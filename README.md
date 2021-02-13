@@ -1,6 +1,6 @@
 # Docker container for Ethereum mining with CUDA (nsfminer)
 
-This Docker container was inspired by the [docker-etheminer](https://github.com/thipokch/docker-ethminer). It uses the [nsfminer](https://github.com/no-fee-ethereum-mining/nsfminer).
+This Docker container was inspired by the [docker-ethminer](https://github.com/thipokch/docker-ethminer). It uses the [nsfminer](https://github.com/no-fee-ethereum-mining/nsfminer).
 
 **NOTE:** Tested with *Ubuntu 18.04.5 LTS*
 
@@ -38,6 +38,14 @@ docker run \
 --gpus all \
 pixelchrome/docker-nsfminer \
 -P stratum1+ssl://0xe01A5deB05749d816176DB35499c5B50B1759449.gh@eu1.ethermine.org:5555
+```
+
+# Build
+
+To build the image locally
+
+```sh
+docker build -t pixelchrome/docker-nsfminer .
 ```
 
 # Support
