@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container>
+  <Beta>False</Beta>
+  <Category></Category>
+  <Name>Nsfminer</Name>
+  <Description>
+    Nsfminer with Nvidia drivers and OC capability.
+  </Description>
+  <Registry>https://registry.hub.docker.com/u/olehj/nsfminer/</Registry>
+  <Repository>olehj/nsfminer:latest</Repository>
+  <BindTime>true</BindTime>
+  <Privileged>true</Privileged>
+  <Environment>
+    <Variable>
+      <Name>ADDRESS</Name>
+      <Value>0x000</Value>
+    </Variable>
+  </Environment>
+  <Networking>
+    <Mode>host</Mode>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/cache/appdata/nsfminer/</HostDir>
+      <ContainerDir>/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Banner></Banner>
+  <Icon></Icon>
+</Container>
