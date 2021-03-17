@@ -2,12 +2,12 @@
 <Container>
   <Beta>False</Beta>
   <Category>Other:</Category>
-  <Name>NsfminerNvidiaOC</Name>
+  <Name>NsfminerOC</Name>
   <Description>
     Nsfminer with Nvidia drivers and OC capability.
   </Description>
-  <Registry>https://registry.hub.docker.com/u/olehj/nsfminer/</Registry>
-  <Repository>olehj/nsfminer:latest</Repository>
+  <Registry>https://registry.hub.docker.com/u/olehj/docker-nsfmineroc/</Registry>
+  <Repository>olehj/nsfminerOC:latest</Repository>
   <BindTime>true</BindTime>
   <Privileged>true</Privileged>
   <ExtraParams>--runtime=nvidia --gpus=all</ExtraParams>
