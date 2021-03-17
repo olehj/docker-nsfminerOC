@@ -39,14 +39,14 @@ RUN nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration --use-disp
 RUN xinit &
 ENV DISPLAY=:0
 
-RUN nvidia-smi -i $NSFMINER_GPU -pl $NSFMINER_GPUPOWERLIMIT
-RUN (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUPowerMizerMode=$NSFMINER_POWERMIZER)
-RUN (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUGraphicsClockOffsetAllPerformanceLevels=$NSFMINER_GPUGFXCLOCKOFFSET)
-RUN (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUMemoryTransferRateOffsetAllPerformanceLevels=$NSFMINER_GPUMEMCLOCKOFFSET)
-RUN (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUFanControlState=$NSFMINER_GPUFANCONTROLL)
-RUN (DISPLAY=$DISPLAY nvidia-settings -a [fan:$NSFMINER_GPUFAN1]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED1)
-RUN (DISPLAY=$DISPLAY nvidia-settings -a [fan:$NSFMINER_GPUFAN2]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED2)
-RUN (DISPLAY=$DISPLAY nvidia-settings -a [fan:$NSFMINER_GPUFAN3]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED3)
+CMD nvidia-smi -i $NSFMINER_GPU -pl $NSFMINER_GPUPOWERLIMIT
+CMD (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUPowerMizerMode=$NSFMINER_POWERMIZER)
+CMD (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUGraphicsClockOffsetAllPerformanceLevels=$NSFMINER_GPUGFXCLOCKOFFSET)
+CMD (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUMemoryTransferRateOffsetAllPerformanceLevels=$NSFMINER_GPUMEMCLOCKOFFSET)
+CMD (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUFanControlState=$NSFMINER_GPUFANCONTROLL)
+CMD (DISPLAY=$DISPLAY nvidia-settings -a [fan:$NSFMINER_GPUFAN1]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED1)
+CMD (DISPLAY=$DISPLAY nvidia-settings -a [fan:$NSFMINER_GPUFAN2]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED2)
+CMD (DISPLAY=$DISPLAY nvidia-settings -a [fan:$NSFMINER_GPUFAN3]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED3)
 
 CMD /opt/nsfminer/nsfminer --nocolor -R -U --HWMON $NSFMINER_HWMON --devices $NSFMINER_GPU \ 
   -P $NSFMINER_TRANSPORT://$NSFMINER_ETHADDRESS.$NSFMINER_WORKERNAME@$NSFMINER_ADDRESS1:$NSFMINER_PORT1 \
