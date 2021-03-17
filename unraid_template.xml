@@ -16,6 +16,10 @@
       <Value>0</Value>
     </Variable>
     <Variable>
+      <Name>NSFMINER_GPUPOWERLIMIT</Name>
+      <Value>500</Value>
+    </Variable>
+    <Variable>
       <Name>NSFMINER_POWERMIZER</Name>
       <Value>2</Value>
     </Variable>
