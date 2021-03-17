@@ -12,7 +12,7 @@ This Docker container was inspired by the [docker-nsfminer](https://github.com/p
 
 ```sh
 docker run \
--it --priveleged --restart unless-stopped --name=nsfminer --runtime=nvidia --gpus=all \
+-it --priveleged --restart unless-stopped --name=nsfminerOC --runtime=nvidia --gpus=all \
 olehj/docker-nsfminer \
 -e NSFMINER_GPU=0 \							# Set GPU ID
 -e NSFMINER_GPUPOWERLIMIT=500 \						# Set power limit for GPU in Watt
