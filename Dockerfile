@@ -35,7 +35,6 @@ ENV GPU_USE_SYNC_OBJECTS=1
 ENV GPU_MAX_ALLOC_PERCENT=100
 ENV GPU_SINGLE_ALLOC_PERCENT=100
 
-RUN nvidia-smi -pm 1
 RUN nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration --use-display-device=None --virtual=1920x1080
 RUN xinit &
 ENV DISPLAY=:0
