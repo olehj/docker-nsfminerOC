@@ -3,7 +3,6 @@ FROM nvidia/cuda:11.2.2-base-ubuntu20.04
 RUN set -ex \
   && apt update \
   && apt upgrade -y \
-  && add-apt-repository -y ppa:graphics-drivers \
   && apt update \
   && apt install -y \
     bzip2 \
@@ -11,6 +10,7 @@ RUN set -ex \
     tzdata \
     wget \
     xinit \
+  && add-apt-repository -y ppa:graphics-drivers \
   && apt install -y \
     nvidia-driver-460 \
     nvidia-utils-460 \
@@ -33,6 +33,7 @@ ENV GPU_MAX_ALLOC_PERCENT=100
 ENV GPU_SINGLE_ALLOC_PERCENT=100
 ENV DISPLAY=:0.0
 
+CMD ["nvidia-smi", "-pm", "1"]
 CMD ["nvidia-xconfig", "--cool-bits=31", "--allow-empty-initial-configuration"]
 CMD ["xinit", "&"]
 
