@@ -73,7 +73,7 @@
     </Variable>
     <Variable>
       <Name>NSFMINER_GPUFAN2</Name>
-      <Value>0</Value>
+      <Value>1</Value>
     </Variable>
     <Variable>
       <Name>NSFMINER_GPUFANSPEED2</Name>
@@ -81,7 +81,7 @@
     </Variable>
     <Variable>
       <Name>NSFMINER_GPUFAN3</Name>
-      <Value>0</Value>
+      <Value>2</Value>
     </Variable>
     <Variable>
       <Name>NSFMINER_GPUFANSPEED3</Name>
