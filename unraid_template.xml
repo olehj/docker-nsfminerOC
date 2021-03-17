@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Container>
   <Beta>False</Beta>
-  <Category>Other</Category>
+  <Category>Other:</Category>
   <Name>NsfminerNvidiaOC</Name>
   <Description>
     Nsfminer with Nvidia drivers and OC capability.
@@ -83,25 +83,10 @@
       <Name>NSFMINER_GPUFANSPEED2</Name>
       <Value>100</Value>
     </Variable>
-    <Variable>
-      <Name>NSFMINER_GPUFAN3</Name>
-      <Value>2</Value>
-    </Variable>
-    <Variable>
-      <Name>NSFMINER_GPUFANSPEED3</Name>
-      <Value>100</Value>
-    </Variable>
   </Environment>
   <Networking>
-    <Mode>host</Mode>
+    <Mode>bridge</Mode>
   </Networking>
-  <Data>
-    <Volume>
-      <HostDir>/mnt/cache/appdata/nsfminer/</HostDir>
-      <ContainerDir>/config</ContainerDir>
-      <Mode>rw</Mode>
-    </Volume>
-  </Data>
   <Banner></Banner>
   <Icon></Icon>
 </Container>
