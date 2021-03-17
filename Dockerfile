@@ -35,17 +35,18 @@ ENV GPU_USE_SYNC_OBJECTS=1
 ENV GPU_MAX_ALLOC_PERCENT=100
 ENV GPU_SINGLE_ALLOC_PERCENT=100
 
-RUN nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration --use-display-device=None --virtual=1920x1080
+RUN nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration --use-display-device=None --virtual=1920x1080 --enable-all-gpus --separate-x-screens
 RUN xinit &
 ENV DISPLAY=:0
 
-#RUN (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUPowerMizerMode=$NSFMINER_POWERMIZER)
-#RUN (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUGraphicsClockOffsetAllPerformanceLevels=$NSFMINER_GPUGFXCLOCKOFFSET)
-#RUN (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUMemoryTransferRateOffsetAllPerformanceLevels=$NSFMINER_GPUMEMCLOCKOFFSET)
-#RUN (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUFanControlState=$NSFMINER_GPUFANCONTROLL)
-#RUN (DISPLAY=$DISPLAY nvidia-settings -a [fan:$NSFMINER_GPUFAN1]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED1)
-#RUN (DISPLAY=$DISPLAY nvidia-settings -a [fan:$NSFMINER_GPUFAN2]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED2)
-#RUN (DISPLAY=$DISPLAY nvidia-settings -a [fan:$NSFMINER_GPUFAN3]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED3)
+RUN nvidia-smi -i $NSFMINER_GPU -pl $NSFMINER_GPUPOWERLIMIT
+RUN (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUPowerMizerMode=$NSFMINER_POWERMIZER)
+RUN (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUGraphicsClockOffsetAllPerformanceLevels=$NSFMINER_GPUGFXCLOCKOFFSET)
+RUN (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUMemoryTransferRateOffsetAllPerformanceLevels=$NSFMINER_GPUMEMCLOCKOFFSET)
+RUN (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUFanControlState=$NSFMINER_GPUFANCONTROLL)
+RUN (DISPLAY=$DISPLAY nvidia-settings -a [fan:$NSFMINER_GPUFAN1]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED1)
+RUN (DISPLAY=$DISPLAY nvidia-settings -a [fan:$NSFMINER_GPUFAN2]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED2)
+RUN (DISPLAY=$DISPLAY nvidia-settings -a [fan:$NSFMINER_GPUFAN3]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED3)
 
 CMD /opt/nsfminer/nsfminer --nocolor -R -U --HWMON $NSFMINER_HWMON --devices $NSFMINER_GPU \ 
   -P $NSFMINER_TRANSPORT://$NSFMINER_ETHADDRESS.$NSFMINER_WORKERNAME@$NSFMINER_ADDRESS1:$NSFMINER_PORT1 \
