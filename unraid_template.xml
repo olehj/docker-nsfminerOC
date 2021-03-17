@@ -6,7 +6,7 @@
   <Description>
     Nsfminer with Nvidia drivers and OC capability.
   </Description>
-  <Registry>https://registry.hub.docker.com/u/olehj/nsfminerOC/</Registry>
+  <Registry>https://registry.hub.docker.com/u/olehj/docker-nsfmineroc/</Registry>
   <Repository>olehj/nsfminerOC:latest</Repository>
   <BindTime>true</BindTime>
   <Privileged>true</Privileged>
