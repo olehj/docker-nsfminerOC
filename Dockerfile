@@ -15,7 +15,7 @@ RUN set -ex \
   && apt install -y \
     nvidia-driver-460 \
     nvidia-utils-460 \
-    xserver-xorg-video-nvidia-460-server \
+    xserver-xorg-video-nvidia-460 \
     nvidia-opencl-dev \
     nvidia-settings \
   && mkdir /opt/nsfminer \
@@ -38,5 +38,10 @@ ENV DISPLAY=:0
 CMD nvidia-smi -pm 1
 CMD nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration
 CMD xinit &
+CMD (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUPowerMizerMode=$NSFMINER_POWERMIZER)
+CMD (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUGraphicsClockOffsetAllPerformanceLevels=$NSFMINER_GPUGFXCLOCKOFFSET)
+CMD (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUMemoryTransferRateOffsetAllPerformanceLevels=$NSFMINER_GPUMEMCLOCKOFFSET)
 
-ENTRYPOINT ["/opt/nsfminer/nsfminer", "--nocolor", "-R", "-U"]
+CMD /opt/nsfminer/nsfminer --nocolor -R -U --HWMON $NSFMINER_HWMON --devices $NSFMINER_GPU \ 
+  -P $NSFMINER_TRANSPORT://$NSFMINER_ETHADDRESS.$NSFMINER_WORKERNAME@$NSFMINER_ADDRESS1:$NSFMINER_PORT1 \
+  -P $NSFMINER_TRANSPORT://$NSFMINER_ETHADDRESS.$NSFMINER_WORKERNAME@$NSFMINER_ADDRESS2:$NSFMINER_PORT2
