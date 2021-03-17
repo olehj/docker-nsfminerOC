@@ -33,6 +33,7 @@ ENV GPU_MAX_ALLOC_PERCENT=100
 ENV GPU_SINGLE_ALLOC_PERCENT=100
 ENV DISPLAY=:0.0
 
+CMD ["nvidia-smi", "-pm", "1"]
 CMD ["nvidia-xconfig", "--cool-bits=31", "--allow-empty-initial-configuration"]
 CMD ["xinit", "&"]
 
