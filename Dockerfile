@@ -37,8 +37,8 @@ ENV GPU_SINGLE_ALLOC_PERCENT=100
 ENV DISPLAY=:0
 
 CMD bash -c "nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration --use-display-device=None --virtual=1920x1080 --enable-all-gpus --separate-x-screens \
-  && xinit & \
-  && nvidia-smi -i $NSFMINER_GPU -pl $NSFMINER_GPUPOWERLIMIT \
+  && xinit \
+  &  nvidia-smi -i $NSFMINER_GPU -pl $NSFMINER_GPUPOWERLIMIT \
   && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUPowerMizerMode=$NSFMINER_POWERMIZER \
   && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUGraphicsClockOffsetAllPerformanceLevels=$NSFMINER_GPUGFXCLOCKOFFSET \
   && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUMemoryTransferRateOffsetAllPerformanceLevels=$NSFMINER_GPUMEMCLOCKOFFSET \
