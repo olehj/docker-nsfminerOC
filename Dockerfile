@@ -48,7 +48,6 @@ CMD bash -c "sleep 3 \
   && if [ $NSFMINER_GPUFANCONTROLL == 1 ]; then \
        nvidia-settings -a [fan:$NSFMINER_GPUFAN1]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED1 \
     && nvidia-settings -a [fan:$NSFMINER_GPUFAN2]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED2 \
-    && nvidia-settings -a [fan:$NSFMINER_GPUFAN3]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED3 \
   fi \
   && /opt/nsfminer/nsfminer --nocolor -R -U --HWMON $NSFMINER_HWMON --devices $NSFMINER_GPU \ 
   -P $NSFMINER_TRANSPORT://$NSFMINER_ETHADDRESS.$NSFMINER_WORKERNAME@$NSFMINER_ADDRESS1:$NSFMINER_PORT1 \
