@@ -9,6 +9,7 @@ RUN set -ex \
     software-properties-common \
     tzdata \
     wget \
+    xterm \
     xinit \
     xserver-xorg \
   && add-apt-repository -y ppa:graphics-drivers \
@@ -33,14 +34,15 @@ ENV GPU_MAX_HEAP_SIZE=100
 ENV GPU_USE_SYNC_OBJECTS=1
 ENV GPU_MAX_ALLOC_PERCENT=100
 ENV GPU_SINGLE_ALLOC_PERCENT=100
+
+RUN nvidia-smi -pm 1
+RUN nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration --use-display-device=None --virtual=1920x1080
+RUN xinit &
 ENV DISPLAY=:0
 
-CMD nvidia-smi -pm 1
-CMD nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration
-CMD xinit &
-CMD (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUPowerMizerMode=$NSFMINER_POWERMIZER)
-CMD (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUGraphicsClockOffsetAllPerformanceLevels=$NSFMINER_GPUGFXCLOCKOFFSET)
-CMD (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUMemoryTransferRateOffsetAllPerformanceLevels=$NSFMINER_GPUMEMCLOCKOFFSET)
+RUN (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUPowerMizerMode=$NSFMINER_POWERMIZER)
+RUN (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUGraphicsClockOffsetAllPerformanceLevels=$NSFMINER_GPUGFXCLOCKOFFSET)
+RUN (DISPLAY=$DISPLAY nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUMemoryTransferRateOffsetAllPerformanceLevels=$NSFMINER_GPUMEMCLOCKOFFSET)
 
 CMD /opt/nsfminer/nsfminer --nocolor -R -U --HWMON $NSFMINER_HWMON --devices $NSFMINER_GPU \ 
   -P $NSFMINER_TRANSPORT://$NSFMINER_ETHADDRESS.$NSFMINER_WORKERNAME@$NSFMINER_ADDRESS1:$NSFMINER_PORT1 \
