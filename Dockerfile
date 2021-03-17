@@ -34,4 +34,4 @@ ENV GPU_SINGLE_ALLOC_PERCENT=100
 
 CMD ["xinit", "&"]
 
-ENTRYPOINT ["/opt/nsfminer/nsfminer", "--nocolor -R -U --HWMON 2"]
+ENTRYPOINT ["/opt/nsfminer/nsfminer", "--nocolor", "-R", "-U"]
