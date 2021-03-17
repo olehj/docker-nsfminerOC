@@ -10,10 +10,12 @@ RUN set -ex \
     tzdata \
     wget \
     xinit \
+    xserver-xorg \
   && add-apt-repository -y ppa:graphics-drivers \
   && apt install -y \
     nvidia-driver-460 \
     nvidia-utils-460 \
+    xserver-xorg-video-nvidia-460-server \
     nvidia-opencl-dev \
     nvidia-settings \
   && mkdir /opt/nsfminer \
@@ -24,17 +26,16 @@ RUN set -ex \
   && apt remove -y software-properties-common \
   && apt autoremove -y \
   && apt clean autoclean \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* \
+  && nvidia-smi -pm 1 \
+  && nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration \
+  && xinit &
 
 ENV GPU_FORCE_64BIT_PTR=0
 ENV GPU_MAX_HEAP_SIZE=100
 ENV GPU_USE_SYNC_OBJECTS=1
 ENV GPU_MAX_ALLOC_PERCENT=100
 ENV GPU_SINGLE_ALLOC_PERCENT=100
-ENV DISPLAY=:0.0
-
-CMD ["nvidia-smi", "-pm", "1"]
-CMD ["nvidia-xconfig", "--cool-bits=31", "--allow-empty-initial-configuration"]
-CMD ["xinit", "&"]
+ENV DISPLAY=:0
 
 ENTRYPOINT ["/opt/nsfminer/nsfminer", "--nocolor", "-R", "-U"]
