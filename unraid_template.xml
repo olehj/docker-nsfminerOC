@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Container>
   <Beta>False</Beta>
-  <Category></Category>
-  <Name>Nsfminer</Name>
+  <Category>Other</Category>
+  <Name>NsfminerNvidiaOC</Name>
   <Description>
     Nsfminer with Nvidia drivers and OC capability.
   </Description>
@@ -12,8 +12,52 @@
   <Privileged>true</Privileged>
   <Environment>
     <Variable>
-      <Name>ADDRESS</Name>
-      <Value>0x000</Value>
+      <Name>NSFMINER_GPU</Name>
+      <Value>0</Value>
+    </Variable>
+    <Variable>
+      <Name>NSFMINER_POWERMIZER</Name>
+      <Value>2</Value>
+    </Variable>
+    <Variable>
+      <Name>NSFMINER_GPUGFXCLOCKOFFSET</Name>
+      <Value>0</Value>
+    </Variable>
+    <Variable>
+      <Name>NSFMINER_GPUMEMCLOCKOFFSET</Name>
+      <Value>0</Value>
+    </Variable>
+    <Variable>
+      <Name>NSFMINER_HWMON</Name>
+      <Value>2</Value>
+    </Variable>
+    <Variable>
+      <Name>NSFMINER_TRANSPORT</Name>
+      <Value>stratum1+ssl</Value>
+    </Variable>
+    <Variable>
+      <Name>NSFMINER_ETHADDRESS/Name>
+      <Value>0xC04d2fF8Ef057CbDc08360c65D9b1268BaFC5a6f</Value>
+    </Variable>
+    <Variable>
+      <Name>NSFMINER_WORKERNAME</Name>
+      <Value>worker</Value>
+    </Variable>
+    <Variable>
+      <Name>NSFMINER_ADDRESS1</Name>
+      <Value>eu1.ethermine.org</Value>
+    </Variable>
+    <Variable>
+      <Name>NSFMINER_ADDRESS2</Name>
+      <Value>us1.ethermine.org</Value>
+    </Variable>
+    <Variable>
+      <Name>NSFMINER_PORT1</Name>
+      <Value>5555</Value>
+    </Variable>
+    <Variable>
+      <Name>NSFMINER_PORT2</Name>
+      <Value>5555</Value>
     </Variable>
   </Environment>
   <Networking>
