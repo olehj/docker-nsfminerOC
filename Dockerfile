@@ -26,10 +26,7 @@ RUN set -ex \
   && apt remove -y software-properties-common \
   && apt autoremove -y \
   && apt clean autoclean \
-  && rm -rf /var/lib/apt/lists/* \
-  && nvidia-smi -pm 1 \
-  && nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration \
-  && xinit &
+  && rm -rf /var/lib/apt/lists/*
 
 ENV GPU_FORCE_64BIT_PTR=0
 ENV GPU_MAX_HEAP_SIZE=100
@@ -37,5 +34,9 @@ ENV GPU_USE_SYNC_OBJECTS=1
 ENV GPU_MAX_ALLOC_PERCENT=100
 ENV GPU_SINGLE_ALLOC_PERCENT=100
 ENV DISPLAY=:0
+
+CMD nvidia-smi -pm 1
+CMD nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration
+CMD xinit &
 
 ENTRYPOINT ["/opt/nsfminer/nsfminer", "--nocolor", "-R", "-U"]
