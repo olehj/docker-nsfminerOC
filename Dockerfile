@@ -22,7 +22,9 @@ RUN set -ex \
   && apt remove -y software-properties-common \
   && apt autoremove -y \
   && apt clean autoclean \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* \
+  && mkdir /etc/X \
+  && wget https://raw.githubusercontent.com/olehj/docker-nsfminer/main/xorg.conf -O /etc/X/xorg.conf
 
 ENV GPU_FORCE_64BIT_PTR=0
 ENV GPU_MAX_HEAP_SIZE=100
@@ -30,4 +32,6 @@ ENV GPU_USE_SYNC_OBJECTS=1
 ENV GPU_MAX_ALLOC_PERCENT=100
 ENV GPU_SINGLE_ALLOC_PERCENT=100
 
-ENTRYPOINT ["/opt/nsfminer/nsfminer", "-U"]
+CMD ["xinit", "&"]
+
+ENTRYPOINT ["/opt/nsfminer/nsfminer", "--nocolor -R -U --HWMON 2"]
