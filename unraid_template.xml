@@ -19,16 +19,6 @@
   <Data/>
   <Environment>
     <Variable>
-      <Value>all</Value>
-      <Name>NVIDIA_VISIBLE_DEVICES</Name>
-      <Mode/>
-    </Variable>
-    <Variable>
-      <Value>all</Value>
-      <Name>NVIDIA_DRIVER_CAPABILITIES</Name>
-      <Mode/>
-    </Variable>
-    <Variable>
       <Value>0</Value>
       <Name>NSFMINER_GPU</Name>
       <Mode/>
