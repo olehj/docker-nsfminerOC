@@ -57,7 +57,7 @@ olehj/docker-nsfminer \
 -e NSFMINER_GPUMEMCLOCKOFFSET=1000 \
 -e NSFMINER_HWMON=2 \
 -e NSFMINER_TRANSPORT=stratum1+ssl \
--e NSFMINER_ETHADDRESS=0xC04d2fF8Ef057CbDc08360c65D9b1268BaFC5a6f \
+-e NSFMINER_ETHADDRESS=0x516eaf4546BBeA271d05A3E883Bd2a11730Ef97b \
 -e NSFMINER_WORKERNAME=worker1 \
 -e NSFMINER_ADDRESS1=eu1.ethermine.org \
 -e NSFMINER_ADDRESS2=us1.ethermine.org \
@@ -80,4 +80,4 @@ docker build -t olehj/docker-nsfminer .
 
 # Support
 
-Leave a tip here `0xC04d2fF8Ef057CbDc08360c65D9b1268BaFC5a6f`
+Leave a tip here `0x516eaf4546BBeA271d05A3E883Bd2a11730Ef97b`
