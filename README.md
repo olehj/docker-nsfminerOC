@@ -31,7 +31,9 @@ olehj/docker-nsfminerOC \
 -e NSFMINER_GPUFAN1=0 \							# Set the FAN ID 1 of GPU
 -e NSFMINER_GPUFANSPEED1=100 \						# Set the speed in percent of FAN ID 1
 -e NSFMINER_GPUFAN2=1 \							#   Same as above, skip and delete if there's no more fans available.
--e NSFMINER_GPUFANSPEED2=100						# 
+-e NSFMINER_GPUFANSPEED2=100 \						# 
+-e NSFMINER_REPORTHASHRATES=true \					# Report hashrate to pool true/false
+-e NSFMINER_NOCOLOR=true						# Set no color output, work best for Unraid and log view.
 ```
 
 **NOTE:** 
@@ -67,7 +69,9 @@ olehj/docker-nsfminerOC \
 -e NSFMINER_GPUFAN1=0 \
 -e NSFMINER_GPUFANSPEED1=60 \
 -e NSFMINER_GPUFAN2=1 \
--e NSFMINER_GPUFANSPEED2=60
+-e NSFMINER_GPUFANSPEED2=60 \
+-e NSFMINER_REPORTHASHRATES=true \
+-e NSFMINER_NOCOLOR=true
 ```
 
 # Build
