@@ -37,8 +37,11 @@ ENV GPU_SINGLE_ALLOC_PERCENT=100
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=all
 ENV DISPLAY=:0
+ENV SET_HASHRATE=""
 
 CMD bash -c "sleep 3 \
+  && sudo nvidia-smi -pm 1 \
+  && sleep 1 \
   && nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration --use-display-device=None --virtual=1920x1080 --enable-all-gpus --separate-x-screens \
   && xinit \
   &  sleep 5 \
@@ -50,6 +53,10 @@ CMD bash -c "sleep 3 \
   && if [ $NSFMINER_GPUFANCONTROLL == 1 ]; then \
           nvidia-settings -a [fan:$NSFMINER_GPUFAN1]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED1 \
        && nvidia-settings -a [fan:$NSFMINER_GPUFAN2]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED2 ; fi \
-  && /opt/nsfminer/nsfminer --nocolor -R -U --HWMON $NSFMINER_HWMON --devices $NSFMINER_GPU \
+  && if [ $NSFMINER_REPORTHASHRATES == true ]; then \
+          SET_HASHRATE='-R' ; fi \
+  && if [ $NSFMINER_NOCOLOR == true ]; then \
+          SET_NOCOlOR='--nocolor' ; fi \
+  && /opt/nsfminer/nsfminer $NSFMINER_NOCOLOR $NSFMINER_REPORTHASHRATES -U --HWMON $NSFMINER_HWMON --devices $NSFMINER_GPU \
   -P $NSFMINER_TRANSPORT://$NSFMINER_ETHADDRESS.$NSFMINER_WORKERNAME@$NSFMINER_ADDRESS1:$NSFMINER_PORT1 \
   -P $NSFMINER_TRANSPORT://$NSFMINER_ETHADDRESS.$NSFMINER_WORKERNAME@$NSFMINER_ADDRESS2:$NSFMINER_PORT2"
