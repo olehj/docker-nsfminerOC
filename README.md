@@ -36,8 +36,8 @@ olehj/docker-nsfminerOC \
 
 **NOTE:** 
 `-U [--cuda]` (Mine/Benchmark using CUDA only) is set by default and can't be changed.
-`-R [--report-hashrates]` Report hashrates is specified as post parameters in Unraid under "Advanced view" by default.
-`--nocolor` No color is specified as post parameteres in Unraid under "Advanced view" by default.
+`-R [--report-hashrates]` Report hashrates is set by default and can't be changed.
+`--nocolor` No color is set by default and can't be changed.
 
 ## Show Logs
 
