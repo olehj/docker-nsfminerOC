@@ -38,7 +38,6 @@ olehj/docker-nsfminerOC \
 
 **NOTE:** 
 `-U [--cuda]` (Mine/Benchmark using CUDA only) is set by default.
-`-R [--report-hashrate]` (Hashrate report) is activated by default.
 
 ## Show Logs
 

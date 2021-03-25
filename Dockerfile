@@ -11,7 +11,6 @@ RUN set -ex \
     wget \
     xterm \
     xinit \
-    xserver-xorg \
   && add-apt-repository -y ppa:graphics-drivers \
   && apt install -y \
     nvidia-driver-460 \
@@ -40,9 +39,8 @@ ENV DISPLAY=:0
 ENV SET_REPORTHASHRATES=""
 ENV SET_NOCOLOR=""
 
-CMD bash -c "sleep 3 \
-  && sudo nvidia-smi -pm 1 \
-  && sleep 1 \
+CMD bash -c "nvidia-smi -pm 1 \
+  && sleep 3 \
   && nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration --use-display-device=None --virtual=1920x1080 --enable-all-gpus --separate-x-screens \
   && xinit \
   &  sleep 5 \
