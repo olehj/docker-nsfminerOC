@@ -19,7 +19,7 @@ RUN set -ex \
     nvidia-opencl-dev \
     nvidia-settings \
   && mkdir /opt/nsfminer \
-  && wget https://github.com/no-fee-ethereum-mining/nsfminer/releases/download/v1.3.8/nsfminer_1.3.8-ubuntu_18.04-cuda_11.2-opencl.tgz -O /tmp/nsfminer.tar.gz \
+  && wget https://github.com/no-fee-ethereum-mining/nsfminer/releases/download/v1.3.11/nsfminer_1.3.11-ubuntu_18.04-cuda_11.2-opencl.tgz -O /tmp/nsfminer.tar.gz \
   && tar -xvzf /tmp/nsfminer.tar.gz -C /opt/nsfminer/ \
   && rm -rf /tmp/nsfminer.tar.gz \
   && ls -l /opt/nsfminer \
