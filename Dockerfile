@@ -19,7 +19,7 @@ RUN set -ex \
     nvidia-opencl-dev \
     nvidia-settings \
   && mkdir /opt/nsfminer \
-  && wget https://github.com/no-fee-ethereum-mining/nsfminer/releases/download/v1.3.11/nsfminer_1.3.11-ubuntu_18.04-cuda_11.2-opencl.tgz -O /tmp/nsfminer.tar.gz \
+  && wget https://github.com/no-fee-ethereum-mining/nsfminer/releases/download/v1.3.12/nsfminer_1.3.12-ubuntu_18.04-cuda_11.2-opencl.tgz -O /tmp/nsfminer.tar.gz \
   && tar -xvzf /tmp/nsfminer.tar.gz -C /opt/nsfminer/ \
   && rm -rf /tmp/nsfminer.tar.gz \
   && ls -l /opt/nsfminer \
@@ -38,10 +38,11 @@ ENV NVIDIA_DRIVER_CAPABILITIES=all
 ENV DISPLAY=:0
 
 CMD bash -c "nvidia-smi -pm 1 \
-  && sleep 3 \
+  && sleep 5 \
   && nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration --use-display-device=None --virtual=1920x1080 --enable-all-gpus --separate-x-screens \
+  && sleep 5 \
   && xinit \
-  &  sleep 5 \
+  &  sleep 10 \
   && nvidia-smi -i $NSFMINER_GPU -pl $NSFMINER_GPUPOWERLIMIT \
   && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUPowerMizerMode=$NSFMINER_POWERMIZER \
   && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUGraphicsClockOffsetAllPerformanceLevels=$NSFMINER_GPUGFXCLOCKOFFSET \
