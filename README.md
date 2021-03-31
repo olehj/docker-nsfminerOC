@@ -13,8 +13,8 @@ This Docker container was inspired by the [docker-nsfminer](https://github.com/p
 
 ```sh
 docker run \
--it --priveleged --restart unless-stopped --name=nsfminerOC --runtime=nvidia --gpus=all \
-olehj/docker-nsfminerOC \
+-it --priveleged --restart unless-stopped --name=NsfminerOC --runtime=nvidia --gpus=all \
+olehj/docker-nsfmineroc \
 -e NSFMINER_GPU=0 \							# Set GPU ID
 -e NSFMINER_GPUPOWERLIMIT=500 \						# Set power limit for GPU in Watt
 -e NSFMINER_POWERMIZER=2 \						# Set PowerMizer performance level
@@ -43,15 +43,15 @@ olehj/docker-nsfminerOC \
 ## Show Logs
 
 ```sh
-docker logs -f nsfminerOC
+docker logs -f NsfminerOC
 ```
 
 # Example
 
 ```sh
 docker run \
--it --priveleged --restart unless-stopped --name=nsfminerOC --runtime=nvidia --gpus=all \
-olehj/docker-nsfminerOC \
+-it --priveleged --restart unless-stopped --name=NsfminerOC --runtime=nvidia --gpus=all \
+olehj/docker-nsfmineroc \
 -e NSFMINER_GPU=1 \
 -e NSFMINER_GPUPOWERLIMIT=230 \
 -e NSFMINER_POWERMIZER=3 \
@@ -77,7 +77,7 @@ olehj/docker-nsfminerOC \
 To build the image locally
 
 ```sh
-docker build -t olehj/docker-nsfminerOC .
+docker build -t olehj/docker-nsfmineroc .
 ```
 
 # Support
