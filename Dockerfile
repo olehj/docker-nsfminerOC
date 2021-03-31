@@ -40,7 +40,7 @@ ENV DATA_DIR=/tmp/
 ENV NV_DRV_V=""
 ENV NVIDIA_BUILD_OPTS="-a -n -q -X --install-libglvnd --ui=none --no-kernel-module"
 
-COPY /worker.sh /tmp/
-RUN chmod +x /tmp/worker.sh
+COPY /worker.sh /opt/
+RUN chmod +x /opt/worker.sh
 
-ENTRYPOINT ["/tmp/worker.sh"]
+ENTRYPOINT ["/opt/worker.sh"]
