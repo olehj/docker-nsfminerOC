@@ -40,25 +40,7 @@ ENV DATA_DIR=/tmp/
 ENV NV_DRV_V=""
 ENV NVIDIA_BUILD_OPTS="-a -n -q -X --install-libglvnd --ui=none"
 
-COPY /fetch_nvidia_drivers.sh /tmp/
-RUN chmod +x /tmp/fetch_nvidia_drivers.sh
+COPY /worker.sh /tmp/
+RUN chmod +x /tmp/worker.sh
 
-CMD bash -c "/tmp/fetch_nvidia_drivers.sh \
-  && nvidia-smi \
-  && nvidia-smi -pm 1 \
-  && sleep 5 \
-  && nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration --use-display-device=None --virtual=1920x1080 --enable-all-gpus --separate-x-screens \
-  && sleep 10 \
-  && xinit \
-  &  sleep 5 \
-  && nvidia-smi -i $NSFMINER_GPU -pl $NSFMINER_GPUPOWERLIMIT \
-  && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUPowerMizerMode=$NSFMINER_POWERMIZER \
-  && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUGraphicsClockOffsetAllPerformanceLevels=$NSFMINER_GPUGFXCLOCKOFFSET \
-  && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUMemoryTransferRateOffsetAllPerformanceLevels=$NSFMINER_GPUMEMCLOCKOFFSET \
-  && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUFanControlState=$NSFMINER_GPUFANCONTROLL \
-  && if [ $NSFMINER_GPUFANCONTROLL == 1 ]; then \
-          nvidia-settings -a [fan:$NSFMINER_GPUFAN1]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED1 \
-       && nvidia-settings -a [fan:$NSFMINER_GPUFAN2]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED2 ; fi \
-  && /opt/nsfminer/nsfminer -R --nocolor -U --HWMON $NSFMINER_HWMON --devices $NSFMINER_GPU \
-  -P $NSFMINER_TRANSPORT://$NSFMINER_ETHADDRESS.$NSFMINER_WORKERNAME@$NSFMINER_ADDRESS1:$NSFMINER_PORT1 \
-  -P $NSFMINER_TRANSPORT://$NSFMINER_ETHADDRESS.$NSFMINER_WORKERNAME@$NSFMINER_ADDRESS2:$NSFMINER_PORT2"
+ENTRYPOINT ["/tmp/worker.sh"]
