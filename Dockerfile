@@ -38,7 +38,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES=all
 ENV DISPLAY=:0
 ENV DATA_DIR=/tmp/
 ENV NV_DRV_V=""
-ENV NVIDIA_BUILD_OPTS="-a -n -q -X --install-libglvnd --ui=none"
+ENV NVIDIA_BUILD_OPTS="-a -n -q -X --install-libglvnd --ui=none --no-kernel-module"
 
 COPY /worker.sh /tmp/
 RUN chmod +x /tmp/worker.sh
