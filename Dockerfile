@@ -11,6 +11,7 @@ RUN set -ex \
     wget \
     xterm \
     xinit \
+    nvidia-settings \
   && mkdir /opt/nsfminer \
   && wget https://github.com/no-fee-ethereum-mining/nsfminer/releases/download/v1.3.12/nsfminer_1.3.12-ubuntu_18.04-cuda_11.2-opencl.tgz -O /tmp/nsfminer.tar.gz \
   && tar -xvzf /tmp/nsfminer.tar.gz -C /opt/nsfminer/ \
