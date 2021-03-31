@@ -36,17 +36,17 @@ ENV GPU_SINGLE_ALLOC_PERCENT=100
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=all
 ENV DISPLAY=:0
+ENV DATA_DIR=/tmp/
 
 COPY /fetch_nvidia_drivers.sh /tmp/
 RUN chmod +x /tmp/fetch_nvidia_drivers.sh
 
-CMD bash -c "echo $DISPLAY \
-  && /tmp/fetch_nvidia_drivers.sh \
+CMD bash -c "/tmp/fetch_nvidia_drivers.sh \
   && nvidia-smi -pm 1 \
   && sleep 5 \
   && nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration --use-display-device=None --virtual=1920x1080 --enable-all-gpus --separate-x-screens \
   && sleep 10 \
-  && DISPLAY=:0 xinit \
+  && xinit \
   &  sleep 500 \
   && nvidia-smi -i $NSFMINER_GPU -pl $NSFMINER_GPUPOWERLIMIT \
   && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUPowerMizerMode=$NSFMINER_POWERMIZER \
