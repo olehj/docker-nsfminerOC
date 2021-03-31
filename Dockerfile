@@ -32,6 +32,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES=all
 ENV DISPLAY=:0
 ENV NV_DRV_V=""
 ENV NVIDIA_BUILD_OPTS="-a -N -q --install-libglvnd --ui=none --no-kernel-module"
+ENV DATA_DIR=/tmp
 
 COPY /fetch_nvidia_drivers.sh /tmp/
 RUN chmod +x /tmp/fetch_nvidia_drivers.sh
