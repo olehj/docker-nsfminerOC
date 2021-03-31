@@ -11,6 +11,10 @@ RUN set -ex \
     wget \
     xterm \
     xinit \
+  && add-apt-repository -y ppa:graphics-drivers \
+  && apt install -y \
+    nvidia-opencl-dev \
+    nvidia-settings \
   && mkdir /opt/nsfminer \
   && wget https://github.com/no-fee-ethereum-mining/nsfminer/releases/download/v1.3.12/nsfminer_1.3.12-ubuntu_18.04-cuda_11.2-opencl.tgz -O /tmp/nsfminer.tar.gz \
   && tar -xvzf /tmp/nsfminer.tar.gz -C /opt/nsfminer/ \
@@ -44,13 +48,13 @@ CMD bash -c "/tmp/fetch_nvidia_drivers.sh \
   && xinit \
   &  sleep 10 \
   && nvidia-smi -i $NSFMINER_GPU -pl $NSFMINER_GPUPOWERLIMIT \
-  && /usr/local/bin/nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUPowerMizerMode=$NSFMINER_POWERMIZER \
-  && /usr/local/bin/nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUGraphicsClockOffsetAllPerformanceLevels=$NSFMINER_GPUGFXCLOCKOFFSET \
-  && /usr/local/bin/nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUMemoryTransferRateOffsetAllPerformanceLevels=$NSFMINER_GPUMEMCLOCKOFFSET \
-  && /usr/local/bin/nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUFanControlState=$NSFMINER_GPUFANCONTROLL \
+  && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUPowerMizerMode=$NSFMINER_POWERMIZER \
+  && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUGraphicsClockOffsetAllPerformanceLevels=$NSFMINER_GPUGFXCLOCKOFFSET \
+  && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUMemoryTransferRateOffsetAllPerformanceLevels=$NSFMINER_GPUMEMCLOCKOFFSET \
+  && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUFanControlState=$NSFMINER_GPUFANCONTROLL \
   && if [ $NSFMINER_GPUFANCONTROLL == 1 ]; then \
-          /usr/local/bin/nvidia-settings -a [fan:$NSFMINER_GPUFAN1]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED1 \
-       && /usr/local/bin/nvidia-settings -a [fan:$NSFMINER_GPUFAN2]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED2 ; fi \
+          nvidia-settings -a [fan:$NSFMINER_GPUFAN1]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED1 \
+       && nvidia-settings -a [fan:$NSFMINER_GPUFAN2]/GPUTargetFanSpeed=$NSFMINER_GPUFANSPEED2 ; fi \
   && /opt/nsfminer/nsfminer -R --nocolor -U --HWMON $NSFMINER_HWMON --devices $NSFMINER_GPU \
   -P $NSFMINER_TRANSPORT://$NSFMINER_ETHADDRESS.$NSFMINER_WORKERNAME@$NSFMINER_ADDRESS1:$NSFMINER_PORT1 \
   -P $NSFMINER_TRANSPORT://$NSFMINER_ETHADDRESS.$NSFMINER_WORKERNAME@$NSFMINER_ADDRESS2:$NSFMINER_PORT2"
