@@ -6,8 +6,7 @@ This Docker container was inspired by the [docker-nsfminer](https://github.com/p
 
 # Requirements
 
-* NVIDIA drivers for your GPU installed. Docker version and Unraid driver version has to be the same.
-* **Current required version:** 460.67
+* NVIDIA drivers for your GPU installed.
  
 # Usage
 
