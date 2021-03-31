@@ -58,6 +58,8 @@ else
 	fi
 fi
 
+echo "---Output of nvidia-smi---"
+nvidia-smi
 echo "---Set persistent mode---"
 nvidia-smi -pm 1
 sleep 5
