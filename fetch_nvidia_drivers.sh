@@ -57,3 +57,5 @@ else
 		echo "---Nvidia Driver v$CUR_NV_DRV_V Up-To-Date---"
 	fi
 fi
+
+exit 0
