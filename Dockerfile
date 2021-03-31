@@ -37,12 +37,17 @@ ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=all
 ENV DISPLAY=:0
 
-CMD bash -c "nvidia-smi -pm 1 \
+COPY /fetch_nvidia_drivers.sh /tmp/
+RUN chmod +x /tmp/fetch_nvidia_drivers.sh
+
+CMD bash -c "echo $DISPLAY \
+  && /tmp/fetch_nvidia_drivers.sh \
+  && nvidia-smi -pm 1 \
   && sleep 5 \
   && nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration --use-display-device=None --virtual=1920x1080 --enable-all-gpus --separate-x-screens \
   && sleep 10 \
-  && xinit \
-  &  sleep 5 \
+  && DISPLAY=:0 xinit \
+  &  sleep 500 \
   && nvidia-smi -i $NSFMINER_GPU -pl $NSFMINER_GPUPOWERLIMIT \
   && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUPowerMizerMode=$NSFMINER_POWERMIZER \
   && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUGraphicsClockOffsetAllPerformanceLevels=$NSFMINER_GPUGFXCLOCKOFFSET \
