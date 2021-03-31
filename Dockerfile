@@ -11,6 +11,7 @@ RUN set -ex \
     wget \
     xterm \
     xinit \
+    libx11-6 \
   && add-apt-repository -y ppa:graphics-drivers \
   && apt install -y \
     nvidia-driver-460 \
