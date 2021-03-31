@@ -37,7 +37,11 @@ ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=all
 ENV DISPLAY=:0
 
-CMD bash -c "nvidia-smi -pm 1 \
+COPY /fetch_nvidia_drivers.sh /tmp/
+RUN chmod +x /tmp/fetch_nvidia_drivers.sh
+
+CMD bash -c "/tmp/fetch_nvidia_drivers.sh \
+  && nvidia-smi -pm 1 \
   && sleep 5 \
   && nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration --use-display-device=None --virtual=1920x1080 --enable-all-gpus --separate-x-screens \
   && sleep 10 \
