@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ -z "${NV_DRV_V}" ]; then
 echo "---Trying to get Nvidia driver version---"
 export NV_DRV_V="$(nvidia-smi | grep NVIDIA-SMI | cut -d ' ' -f3)"
