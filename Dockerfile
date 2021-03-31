@@ -34,9 +34,9 @@ ENV NVIDIA_BUILD_OPTS="-a -N -q --install-libglvnd --ui=none --no-kernel-module"
 
 COPY /fetch_nvidia_drivers.sh /tmp/
 RUN chmod +x /tmp/fetch_nvidia_drivers.sh
-RUN /tmp/fetch_nvidia_drivers.sh
 
-CMD bash -c "nvidia-smi -pm 1 \
+CMD bash -c "/tmp/fetch_nvidia_drivers.sh \
+  && nvidia-smi -pm 1 \
   && sleep 5 \
   && nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration --use-display-device=None --virtual=1920x1080 --enable-all-gpus --separate-x-screens \
   && sleep 5 \
