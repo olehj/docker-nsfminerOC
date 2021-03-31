@@ -11,7 +11,6 @@ RUN set -ex \
     wget \
     xterm \
     xinit \
-    libx11-6 \
   && add-apt-repository -y ppa:graphics-drivers \
   && apt install -y \
     nvidia-driver-460 \
@@ -41,9 +40,9 @@ ENV DISPLAY=:0
 CMD bash -c "nvidia-smi -pm 1 \
   && sleep 5 \
   && nvidia-xconfig --cool-bits=31 --allow-empty-initial-configuration --use-display-device=None --virtual=1920x1080 --enable-all-gpus --separate-x-screens \
-  && sleep 5 \
+  && sleep 10 \
   && xinit \
-  &  sleep 10 \
+  &  sleep 5 \
   && nvidia-smi -i $NSFMINER_GPU -pl $NSFMINER_GPUPOWERLIMIT \
   && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUPowerMizerMode=$NSFMINER_POWERMIZER \
   && nvidia-settings -a [gpu:$NSFMINER_GPU]/GPUGraphicsClockOffsetAllPerformanceLevels=$NSFMINER_GPUGFXCLOCKOFFSET \
