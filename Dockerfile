@@ -13,11 +13,11 @@ RUN set -ex \
     xinit \
   && add-apt-repository -y ppa:graphics-drivers \
   && apt install -y \
-    nvidia-opencl-dev \
-    nvidia-settings \
     nvidia-driver-460 \
     nvidia-utils-460 \
     xserver-xorg-video-nvidia-460 \
+    nvidia-opencl-dev \
+    nvidia-settings \
   && mkdir /opt/nsfminer \
   && wget https://github.com/no-fee-ethereum-mining/nsfminer/releases/download/v1.3.12/nsfminer_1.3.12-ubuntu_18.04-cuda_11.2-opencl.tgz -O /tmp/nsfminer.tar.gz \
   && tar -xvzf /tmp/nsfminer.tar.gz -C /opt/nsfminer/ \
@@ -36,12 +36,6 @@ ENV GPU_SINGLE_ALLOC_PERCENT=100
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=all
 ENV DISPLAY=:0
-#ENV NV_DRV_V=""
-#ENV NVIDIA_BUILD_OPTS="-a -N -q --install-libglvnd --ui=none --no-kernel-module"
-#ENV DATA_DIR=/tmp
-
-#COPY /fetch_nvidia_drivers.sh /tmp/
-#RUN chmod +x /tmp/fetch_nvidia_drivers.sh
 
 CMD bash -c "nvidia-smi -pm 1 \
   && sleep 5 \
