@@ -21,7 +21,7 @@ olehj/docker-nsfmineroc \
 -e NSFMINER_GPUMEMCLOCKOFFSET=0 \					# Set GPU memory clock offset
 -e NSFMINER_HWMON=2 \							# Set Feedback level from nsfminer
 -e NSFMINER_TRANSPORT=stratum1+ssl \					# Set transport for worker
--e NSFMINER_ETHADDRESS=0xC04d2fF8Ef057CbDc08360c65D9b1268BaFC5a6f \	# Set your worker ethereum address
+-e NSFMINER_ETHADDRESS=0x516eaf4546BBeA271d05A3E883Bd2a11730Ef97b \	# Set your worker ethereum address
 -e NSFMINER_WORKERNAME=worker \						# Set a worker name
 -e NSFMINER_ADDRESS1=eu1.ethermine.org \				# Set address 1 for worker, both must be set
 -e NSFMINER_ADDRESS2=us1.ethermine.org \				# Set address 2 for worker, both must be set
